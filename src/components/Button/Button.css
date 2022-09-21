@@ -1,0 +1,61 @@
+.generic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition-timing-function: ease-in;
+  background-color: white;
+  height: 40%;
+  width: 40%;
+  border: 1px solid gray;
+  color: gray;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s linear 0s;
+}
+.generic:hover {
+  transition: all 0.2s linear 0s;
+  color: black;
+}
+
+/* <-- --> */
+.error {
+  transition: all 0.2s linear 0s;
+  background-color: rgb(219, 66, 66);
+  color: white;
+  font-weight: bold;
+  border: 3px solid red;
+}
+.error:hover {
+  transition: all 0.2s linear 0s;
+  background-color: transparent;
+  color: red;
+}
+
+/* <-- --> */
+.sucess {
+  transition: all 0.2s linear 0s;
+  background-color: rgb(55, 145, 30);
+  color: white;
+  font-weight: bold;
+  border: 3px solid green;
+}
+.sucess:hover {
+  transition: all 0.2s linear 0s;
+  background-color: transparent;
+  color: green;
+}
+
+/* <-- --> */
+.warning {
+  transition: all 0.2s linear 0s;
+  background-color: rgb(209, 209, 10);
+  color: white;
+  font-weight: bold;
+  border: 3px solid rgb(208, 208, 54);
+}
+.warning:hover {
+  transition: all 0.2s linear 0s;
+  background-color: transparent;
+  color: rgb(209, 209, 10);
+}

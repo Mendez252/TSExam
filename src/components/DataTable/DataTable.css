@@ -1,0 +1,29 @@
+.table_container {
+  width: 95%;
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.table_header {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
+  border: 1px solid lightgray;
+  width: 80%;
+}
+
+.table_header {
+  background-color: beige;
+  color: rgb(150, 121, 82);
+}
+
+.table_rows {
+  display: grid;
+  border: 1px solid lightgray;
+  width: 80%;
+  grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
+}
+
+.row {
+  background-color: rgb(214, 220, 220);
+}
