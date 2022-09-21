@@ -1,0 +1,55 @@
+.navbar_container {
+  display: grid;
+  height: 60px;
+  width: 100%;
+  background-color: rgb(70, 100, 110);
+  color: white;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: 0.2fr 0.2fr 1fr 1fr 1fr 0.7fr;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4vh;
+}
+
+.navbar_user {
+  max-width: 60px;
+  max-height: 50px;
+  border-radius: 100%;
+}
+
+.user_container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.notification {
+  position: relative;
+}
+
+.notification::after,
+.notification::after {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 17px;
+  width: 19px;
+  top: 0;
+  left: 15px;
+  border-radius: 100%;
+  content: attr(count);
+  background: red;
+  color: white;
+  font-size: x-small;
+}
+
+i {
+  font-size: 3.8vh;
+}

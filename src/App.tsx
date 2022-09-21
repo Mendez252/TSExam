@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { useDispatch, useSelector } from "react-redux";
+import LoginPage from "./pages/LoginPage";
+import { setEmployees } from "./redux/reducers/globals";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface IEmployees {
+  name: string;
 }
+const App: React.FC = () => {
+  /* const useAppDispatch: () => AppDispatch = useDispatch; */
+  const dispatch = useDispatch();
+
+  /* const { employeesData } = useSelector((state: RootState) => state.employeesData); */
+  /* const { employeesData } = useSelector((state) => state.employeesData); */
+
+  return <div></div>;
+};
 
 export default App;
