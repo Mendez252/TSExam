@@ -1,4 +1,10 @@
 import React, { useState } from "react";
+import { RootState } from "../../redux/store/";
+import { connect } from "react-redux";
+import { login } from "../../redux/store/sessions/actions";
+import { AccessToken } from "../../redux/store/sessions/reducer";
+import { ThunkDispatch } from "redux-thunk";
+import { Redirect } from "react-router-dom";
 import Button from "../Button/Button";
 import "./LoginForm.css";
 
@@ -12,11 +18,27 @@ type User = {
   password: string;
 };
 
-const LoginForm: React.FC = () => {
+interface State {}
+
+interface OwnProps {}
+
+interface DispatchProps {
+  login: (username: string, password: string) => void;
+}
+
+interface StateProps {
+  accessToken: AccessToken;
+}
+
+type Props = StateProps & DispatchProps & OwnProps;
+
+const LoginForm = ({ accessToken, login }: Props) => {
   const [user, setUser] = useState<User>({ email: "", password: "" });
   const [turnOn, setTurnOn] = useState<Styles>({ color: "black" });
   const [turnOff, setTurnOff] = useState<Styles>({ color: "gray" });
   const [active, setActive] = useState<boolean>(false);
+
+  const token = accessToken;
 
   const onHandleChange = (e: React.FormEvent): void => {
     e.preventDefault();
@@ -43,6 +65,10 @@ const LoginForm: React.FC = () => {
       setActive(true);
     }
   };
+
+  if (accessToken?.accessToken) {
+    return <Redirect to="/employees" />;
+  }
 
   return (
     <div className="login_container">
@@ -97,9 +123,34 @@ const LoginForm: React.FC = () => {
           onPaste={onHandleChange}
         ></input>
       )}
-      <Button flag="sucess" title={active ? "Sign Up" : "Sign In"} />
+      <Button
+        flag="sucess"
+        title={active ? "Sign Up" : "Sign In"}
+        onClick={() => login("test", "test")}
+      />
     </div>
   );
 };
 
-export default LoginForm;
+const mapStateToProps = (states: RootState, ownProps: OwnProps): StateProps => {
+  return {
+    accessToken: states.session.accessToken,
+  };
+};
+
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<{}, {}, any>,
+  ownProps: OwnProps
+): DispatchProps => {
+  return {
+    login: async (username, password) => {
+      await dispatch(login(username, password));
+      console.log("Login completed [UI]");
+    },
+  };
+};
+
+export default connect<StateProps, DispatchProps, OwnProps, RootState>(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginForm);

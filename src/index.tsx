@@ -1,33 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { Provider } from "react-redux";
-import { store } from "./redux/store";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
-import LoginPage from "./pages/LoginPage";
-import EmployeesPage from "./pages/EmployeesPage";
-import ProtectedRoute from "./redux/protectedRoutes/protectedRoutes";
-
-const isAuth: boolean = false;
+import session from "./redux/store/index";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <Router>
-        <Switch>
-          <Route path="/" component={() => <LoginPage />} />
-          <ProtectedRoute
-            isAuth={isAuth}
-            path="/employees"
-            component={() => <EmployeesPage />}
-          />
-        </Switch>
-      </Router>
+    <Provider store={session}>
+      <App />
     </Provider>
   </React.StrictMode>
 );

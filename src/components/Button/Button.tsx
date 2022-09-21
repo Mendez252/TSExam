@@ -6,9 +6,10 @@ import "./Button.css";
 interface Props {
   title: string;
   flag: string;
+  onClick: () => void;
 }
 
-const Button: React.FC<Props> = ({ title, flag = "" }) => {
+const Button: React.FC<Props> = ({ title, flag = "", onClick }) => {
   const [status, setStatus] = useState(flag);
 
   const onHandleClick = () => {
@@ -23,7 +24,7 @@ const Button: React.FC<Props> = ({ title, flag = "" }) => {
   };
 
   return (
-    <div className={checkFlag()} onClick={onHandleClick}>
+    <div className={checkFlag()} onClick={onClick}>
       {title}
     </div>
   );

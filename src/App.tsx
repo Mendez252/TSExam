@@ -1,20 +1,16 @@
 import React from "react";
-import "./App.css";
-import { useDispatch, useSelector } from "react-redux";
-import LoginPage from "./pages/LoginPage";
-import { setEmployees } from "./redux/reducers/globals";
+import { Provider } from "react-redux";
+import Routes from "./Routes";
+import store from "./redux/store";
 
-interface IEmployees {
-  name: string;
-}
-const App: React.FC = () => {
-  /* const useAppDispatch: () => AppDispatch = useDispatch; */
-  const dispatch = useDispatch();
-
-  /* const { employeesData } = useSelector((state: RootState) => state.employeesData); */
-  /* const { employeesData } = useSelector((state) => state.employeesData); */
-
-  return <div></div>;
+const App = () => {
+  return (
+    <React.StrictMode>
+      <Provider store={store}>
+        <Routes />
+      </Provider>
+    </React.StrictMode>
+  );
 };
 
 export default App;

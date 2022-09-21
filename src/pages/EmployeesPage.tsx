@@ -4,15 +4,20 @@ import NavBar from "../components/NavBar/NavBar";
 import DataTable from "../components/DataTable/DataTable";
 import Pagination from "../components/Pagination/Pagination";
 import Form from "../components/Form/Form";
-
+import { Redirect } from "react-router-dom";
 const url: string =
   "https://6edeayi7ch.execute-api.us-east-1.amazonaws.com/v1/examen/employees/carlosmendez";
 
-const EmployeesPage = () => {
+interface Props {
+  isAuth: boolean;
+}
+
+const EmployeesPage = ({ isAuth }: Props) => {
   const [employees, setEmployees] = useState<any[]>([]);
   const [employeesCopy, setEmployeesCopy] = useState<any[]>([]);
 
   const [currentPage, setCurrentPage] = useState<number>(1);
+
   //---Pagination---
   const [employeesPerPage] = useState<number>(10);
   const indexOfLastEmployee = currentPage * employeesPerPage;
@@ -42,7 +47,7 @@ const EmployeesPage = () => {
     setEmployees(employees);
   };
 
-  useEffect(() => {
+  useEffect((): any => {
     const request = axios.get(`${url}`).then((res) => {
       setEmployees(res.data.data.employees);
       setEmployeesCopy(res.data.data.employees);
