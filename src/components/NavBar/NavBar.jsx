@@ -1,12 +1,15 @@
 import React from "react";
-import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory";
 import Searchbar from "../Searchbar/Searchbar";
 import "./NavBar.css";
 
-const NavBar = ({ user = true, notification_count = 0 }) => {
+const NavBar = ({ user = true, notification_count = 0, searching }) => {
   const checkNotification = () => {
     if (notification_count <= 0) return;
     else return "notification";
+  };
+
+  const onSearch = (name) => {
+    searching(name);
   };
 
   return (
@@ -15,7 +18,7 @@ const NavBar = ({ user = true, notification_count = 0 }) => {
       <p>TORNADO</p>
       <p>---</p>
       <p>---</p>
-      <Searchbar />
+      <Searchbar onHandleSearch={onSearch} />
       {user ? (
         <div className="user_container">
           <div count={notification_count} className={checkNotification()}>

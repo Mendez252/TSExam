@@ -20,7 +20,7 @@ root.render(
     <Provider store={store}>
       <Router>
         <Switch>
-          <Route path="/login" component={() => <EmployeesPage />} />
+          <Route path="/" component={() => <LoginPage />} />
           <ProtectedRoute
             isAuth={isAuth}
             path="/employees"

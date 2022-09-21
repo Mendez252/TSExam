@@ -44,8 +44,6 @@ const LoginForm: React.FC = () => {
     }
   };
 
-  const onSubmit = (): void => {};
-
   return (
     <div className="login_container">
       <img

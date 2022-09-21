@@ -1,16 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./DataTable.css";
-
-type EmployeeProps = {
-  id: number;
-  name: string;
-  last_name: string;
-  birthday: number;
-};
-
-interface employProps {
-  employProps: [];
-}
 
 const data = [
   {
@@ -32,81 +21,99 @@ const data = [
     birthday: 1587599581347,
   },
   {
-    id: 1,
+    id: 4,
     name: "Aguayo González",
     last_name: "Jaime Francisco",
     birthday: 1587599581347,
   },
   {
-    id: 2,
+    id: 5,
     name: "Chávez Heredia",
     last_name: "Andrea",
     birthday: 1587599581347,
   },
   {
-    id: 3,
+    id: 6,
     name: "Cortés Lagunes",
     last_name: "Ruth Silvana",
     birthday: 1587599581347,
   },
   {
-    id: 1,
+    id: 7,
     name: "Aguayo González",
     last_name: "Jaime Francisco",
     birthday: 1587599581347,
   },
   {
-    id: 2,
+    id: 8,
     name: "Chávez Heredia",
     last_name: "Andrea",
     birthday: 1587599581347,
   },
   {
-    id: 3,
+    id: 9,
     name: "Cortés Lagunes",
     last_name: "Ruth Silvana",
     birthday: 1587599581347,
   },
   {
-    id: 1,
+    id: 10,
     name: "Aguayo González",
     last_name: "Jaime Francisco",
     birthday: 1587599581347,
   },
   {
-    id: 2,
+    id: 11,
     name: "Chávez Heredia",
     last_name: "Andrea",
     birthday: 1587599581347,
   },
   {
-    id: 3,
+    id: 12,
     name: "Cortés Lagunes",
     last_name: "Ruth Silvana",
     birthday: 1587599581347,
   },
   {
-    id: 1,
+    id: 13,
     name: "Aguayo González",
     last_name: "Jaime Francisco",
     birthday: 1587599581347,
   },
   {
-    id: 2,
+    id: 14,
     name: "Chávez Heredia",
     last_name: "Andrea",
     birthday: 1587599581347,
   },
   {
-    id: 3,
+    id: 15,
     name: "Cortés Lagunes",
     last_name: "Ruth Silvana",
     birthday: 1587599581347,
   },
 ];
 
-/* const DataTable: React.FC<employProps> = (employ: employProps): JSX.Element => { */
-const DataTable: React.FC = (): JSX.Element => {
+type EmployeeProps = {
+  id: number;
+  name: string;
+  last_name: string;
+  birthday: number;
+};
+
+interface employeeProps {
+  employeesArray: EmployeeProps[];
+}
+
+const DataTable: React.FC<employeeProps> = (
+  props: employeeProps
+): JSX.Element => {
+  const [data, setData] = useState<any[]>([...props.employeesArray]);
+
+  useEffect(() => {
+    setData(props.employeesArray);
+  }, [props.employeesArray]);
+
   return (
     <div className="table_container">
       <div className="table_header">
@@ -119,13 +126,13 @@ const DataTable: React.FC = (): JSX.Element => {
       </div>
 
       <div className="table_header row">
-        {data.map((employee) => {
+        {data.map((employee: any) => {
           return (
             <>
               <p></p>
               <p>{employee.id}</p>
-              <p>{employee.name}</p>
               <p>{employee.last_name}</p>
+              <p>{employee.name}</p>
               <p>{employee.birthday}</p>
               <p></p>
             </>
