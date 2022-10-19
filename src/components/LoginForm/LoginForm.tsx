@@ -8,6 +8,8 @@ import { Redirect } from "react-router-dom";
 import Button from "../Button/Button";
 import "./LoginForm.css";
 
+//TYPES & INTERFACES
+//---------------------------------------------------------------------->
 type Styles = {
   color: string;
   borderBottom?: string;
@@ -16,6 +18,7 @@ type Styles = {
 type User = {
   email: string;
   password: string;
+  isLogged: boolean;
 };
 
 interface State {}
@@ -23,7 +26,7 @@ interface State {}
 interface OwnProps {}
 
 interface DispatchProps {
-  login: (username: string, password: string) => void;
+  login: (username: string, password: string, isLogged: boolean) => void;
 }
 
 interface StateProps {
@@ -31,9 +34,14 @@ interface StateProps {
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
+//---------------------------------------------------------------------->
 
 const LoginForm = ({ accessToken, login }: Props) => {
-  const [user, setUser] = useState<User>({ email: "", password: "" });
+  const [user, setUser] = useState<User>({
+    email: "",
+    password: "",
+    isLogged: false,
+  });
   const [turnOn, setTurnOn] = useState<Styles>({ color: "black" });
   const [turnOff, setTurnOff] = useState<Styles>({ color: "gray" });
   const [active, setActive] = useState<boolean>(false);
@@ -68,6 +76,9 @@ const LoginForm = ({ accessToken, login }: Props) => {
 
   if (accessToken?.accessToken) {
     return <Redirect to="/employees" />;
+  } else {
+    alert("please login");
+    return <Redirect to="/login" />;
   }
 
   return (
@@ -126,7 +137,7 @@ const LoginForm = ({ accessToken, login }: Props) => {
       <Button
         flag="sucess"
         title={active ? "Sign Up" : "Sign In"}
-        onClick={() => login("test", "test")}
+        onClick={() => login("test", "test", true)}
       />
     </div>
   );
@@ -143,8 +154,8 @@ const mapDispatchToProps = (
   ownProps: OwnProps
 ): DispatchProps => {
   return {
-    login: async (username, password) => {
-      await dispatch(login(username, password));
+    login: async (username, password, isLogged) => {
+      await dispatch(login(username, password, isLogged));
       console.log("Login completed [UI]");
     },
   };

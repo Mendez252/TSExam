@@ -5,11 +5,11 @@ import store from "./redux/store";
 
 const App = () => {
   return (
-    <React.StrictMode>
+    <React.Fragment>
       <Provider store={store}>
         <Routes />
       </Provider>
-    </React.StrictMode>
+    </React.Fragment>
   );
 };
 

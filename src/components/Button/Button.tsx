@@ -4,9 +4,9 @@ import "./Button.css";
 //README: status=['sucess','warning','error']
 
 interface Props {
-  title: string;
-  flag: string;
-  onClick: () => void;
+  title?: string;
+  flag?: string;
+  onClick?: () => void;
 }
 
 const Button: React.FC<Props> = ({ title, flag = "", onClick }) => {

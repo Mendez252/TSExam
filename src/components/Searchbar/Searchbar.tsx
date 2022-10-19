@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { createNoSubstitutionTemplateLiteral } from "typescript";
 import "./Searchbar.css";
 
 interface searchbarProps {
-  onHandleSearch: (e: string) => {};
+  onHandleSearch: (e: string) => void;
 }
 
 const Searchbar = ({ onHandleSearch }: searchbarProps) => {
@@ -16,6 +17,7 @@ const Searchbar = ({ onHandleSearch }: searchbarProps) => {
   };
 
   const search = () => {
+    console.log(query);
     onHandleSearch(query);
   };
 

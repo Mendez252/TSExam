@@ -4,15 +4,15 @@ import NavBar from "../components/NavBar/NavBar";
 import DataTable from "../components/DataTable/DataTable";
 import Pagination from "../components/Pagination/Pagination";
 import Form from "../components/Form/Form";
-import { Redirect } from "react-router-dom";
+
 const url: string =
   "https://6edeayi7ch.execute-api.us-east-1.amazonaws.com/v1/examen/employees/carlosmendez";
 
-interface Props {
+/* interface Props {
   isAuth: boolean;
-}
+} */
 
-const EmployeesPage = ({ isAuth }: Props) => {
+const EmployeesPage = () => {
   const [employees, setEmployees] = useState<any[]>([]);
   const [employeesCopy, setEmployeesCopy] = useState<any[]>([]);
 
@@ -32,8 +32,10 @@ const EmployeesPage = ({ isAuth }: Props) => {
 
   const searchEmployee = (name: string) => {
     if (name === "") {
+      setEmployees(employeesCopy);
       return;
     } else {
+      setCurrentPage(1);
       const result = employeesCopy.filter((e) => {
         return e.last_name.toLowerCase() === name.toLowerCase();
       });
@@ -52,7 +54,7 @@ const EmployeesPage = ({ isAuth }: Props) => {
       setEmployees(res.data.data.employees);
       setEmployeesCopy(res.data.data.employees);
     });
-  }, [employees]);
+  }, []);
 
   return (
     <div className="employees_container">

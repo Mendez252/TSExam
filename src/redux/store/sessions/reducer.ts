@@ -1,9 +1,16 @@
 import { combineReducers } from "redux";
 import { Action } from "./actions";
 
+export interface Credentials {
+  username: string;
+  password: string;
+  isLogged: boolean;
+}
+
 export interface AccessToken {
   isFetching: boolean;
-  accessToken?: string | undefined;
+  accessToken?: Credentials;
+  isLogged: boolean;
 }
 
 export interface State {
@@ -12,15 +19,23 @@ export interface State {
 //--------------------->
 
 const accessToken = (
-  state: AccessToken = { isFetching: false, accessToken: undefined },
+  state: AccessToken = {
+    isFetching: false,
+    isLogged: false,
+    accessToken,
+  },
   action: Action
 ): AccessToken => {
   switch (action.type) {
     case "SET_TOKEN":
-      console.log({ ...state, accessToken: action.accessToken });
-      return { ...state, accessToken: action.accessToken };
+      const { username, password } = action.accessToken;
+      if (username && password === "test") {
+        return { ...state, isLogged: action.accessToken.isLogged };
+      }
+      break;
     case "SET_FETCHING":
       return { ...state, isFetching: action.isFetching };
+      break;
   }
   return state;
 };

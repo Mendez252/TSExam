@@ -4,8 +4,8 @@
   align-items: center;
   transition-timing-function: ease-in;
   background-color: white;
-  height: 40%;
-  width: 40%;
+  height: 30px;
+  width: 100px;
   border: 1px solid gray;
   color: gray;
   border-radius: 5px;

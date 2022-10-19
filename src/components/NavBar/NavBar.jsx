@@ -8,17 +8,13 @@ const NavBar = ({ user = true, notification_count = 0, searching }) => {
     else return "notification";
   };
 
-  const onSearch = (name) => {
-    searching(name);
-  };
-
   return (
     <div className="navbar_container">
       <i className="fa-sharp fa-solid fa-tornado icon"></i>
       <p>TORNADO</p>
       <p>---</p>
       <p>---</p>
-      <Searchbar onHandleSearch={onSearch} />
+      <Searchbar onHandleSearch={searching} />
       {user ? (
         <div className="user_container">
           <div count={notification_count} className={checkNotification()}>

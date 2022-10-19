@@ -6,9 +6,11 @@ import { AccessToken } from "../redux/store/sessions/reducer";
 import { ThunkDispatch } from "redux-thunk";
 import { Redirect, RouteProps } from "react-router-dom";
 import Button from "./../components/Button/Button";
+import { AnyAction } from "redux";
 import "./style/LoginForm.css";
-import "./style/LoginPage.css";
 
+//TYPES & INTERFACES
+//------------------------------------------------------>
 type Styles = {
   color: string;
   borderBottom?: string;
@@ -17,14 +19,13 @@ type Styles = {
 type User = {
   email: string;
   password: string;
+  isLogged: boolean;
 };
-
-interface State {}
 
 interface OwnProps extends RouteProps {}
 
 interface DispatchProps {
-  login: (username: string, password: string) => void;
+  login: (username: string, password: string, isLogged: boolean) => void;
 }
 
 interface StateProps {
@@ -33,8 +34,13 @@ interface StateProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
+//--------------------------------------------------------->
 const LoginPage = ({ accessToken, login }: Props) => {
-  const [user, setUser] = useState<User>({ email: "", password: "" });
+  const [user, setUser] = useState<User>({
+    email: "",
+    password: "",
+    isLogged: false,
+  });
   const [turnOn, setTurnOn] = useState<Styles>({ color: "black" });
   const [turnOff, setTurnOff] = useState<Styles>({ color: "gray" });
   const [active, setActive] = useState<boolean>(false);
@@ -67,9 +73,11 @@ const LoginPage = ({ accessToken, login }: Props) => {
     }
   };
 
-  if (token) {
+  /*   if (accessToken.isLogged) {
     return <Redirect to="/employees" />;
-  }
+  } else {
+    return <Redirect to="/login" />;
+  } */
 
   return (
     <div className="main_container">
@@ -128,7 +136,7 @@ const LoginPage = ({ accessToken, login }: Props) => {
         <Button
           flag="sucess"
           title={active ? "Sign Up" : "Sign In"}
-          onClick={() => login("test", "test")}
+          onClick={() => login("test", "test", true)}
         />
       </div>
     </div>
@@ -146,9 +154,8 @@ const mapDispatchToProps = (
   ownProps: OwnProps
 ): DispatchProps => {
   return {
-    login: async (username, password) => {
-      await dispatch(login(username, password));
-      console.log("Login completed [UI]");
+    login: async (username: string, password: string, isLogged: boolean) => {
+      await dispatch(login(username, password, isLogged));
     },
   };
 };

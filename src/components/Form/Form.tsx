@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Form.css";
 import axios from "axios";
+import Button from "../Button/Button";
 
 interface formProps {
   refresh: () => {};
@@ -26,23 +27,23 @@ const Form = ({ refresh }: formProps) => {
     }
   };
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
+    const headers = {
+      "Content-Type": "application/json",
+    };
+
     try {
       e.preventDefault();
       const { name, last_name, birthday } = input;
+      console.log("clicked");
 
-      axios({
-        url: "https://6edeayi7ch.execute-api.us-east-1.amazonaws.com/v1/examen/employees/carlosmendez",
-        method: "POST",
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          origin: "x-requested-with",
-          "Access-Control-Allow-Headers":
-            "POST, GET, PUT, DELETE, OPTIONS, HEAD, Authorization, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Allow-Origin",
-          "Content-Type": "application/json",
-        },
-        data: JSON.stringify({ name, last_name, birthday }),
-      }).catch((error) => console.log(error));
+      await axios
+        .post(
+          "https://6edeayi7ch.execute-api.us-east-1.amazonaws.com/v1/examen/employees/carlosmendez",
+          JSON.stringify({ name, last_name, birthday }),
+          { headers }
+        )
+        .catch((error) => console.log(error));
       refresh();
     } catch (error) {
       console.log(error);
@@ -80,9 +81,10 @@ const Form = ({ refresh }: formProps) => {
         required
         className="input"
         name="birthday"
-        type="text"
+        type="date"
         value={input.birthday}
         onChange={onHandleChange}
+        placeholder="dd-mm-yyyy"
       />
       {error.name && <p className="error">{error.name}</p>}
       <button className="form_button" onClick={onSubmit}>

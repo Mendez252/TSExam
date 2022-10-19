@@ -35,14 +35,14 @@ const DataTable: React.FC<employeeProps> = (
       <div className="table_header row">
         {data.map((employee: any) => {
           return (
-            <>
+            <React.Fragment key={employee.id}>
               <p></p>
               <p>{employee.id}</p>
               <p>{employee.last_name}</p>
               <p>{employee.name}</p>
               <p>{employee.birthday}</p>
               <p></p>
-            </>
+            </React.Fragment>
           );
         })}
       </div>

@@ -6,7 +6,7 @@ const Pagination = ({ employeesPerPage, allEmployees, pagination }: any) => {
   console.log("employeesPerPage", employeesPerPage);
   console.log("allEmployees", allEmployees); */
 
-  const pageNumbers = [];
+  const pageNumbers: number[] = [];
 
   for (let i = 1; i <= Math.ceil(allEmployees / employeesPerPage); i++) {
     pageNumbers.push(i);
@@ -16,7 +16,7 @@ const Pagination = ({ employeesPerPage, allEmployees, pagination }: any) => {
       <ul className="paginado">
         {pageNumbers &&
           pageNumbers.map((number, id) => (
-            <li className="number" key={id}>
+            <li className="numbeer" key={id}>
               <a href="#/" onClick={() => pagination(number)}>
                 {number}
               </a>

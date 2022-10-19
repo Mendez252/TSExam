@@ -11,6 +11,7 @@ import { AccessToken } from "./redux/store/sessions/reducer";
 import LoginPage from "./pages/LoginPage";
 import EmployeesPage from "./pages/EmployeesPage";
 import PrivateRoute from "./pages/PrivateRoute";
+import NotFound from "./pages/NotFound";
 
 interface OwnProps {}
 
@@ -24,17 +25,21 @@ const Routes = ({ accessToken }: Props) => {
   const [isAuth, setAuth] = useState(false);
 
   useEffect(() => {
-    setAuth(accessToken?.accessToken ? true : false);
-    console.log(isAuth);
-  }, [accessToken?.accessToken]);
+    setAuth(accessToken.isLogged);
+  }, [accessToken.isLogged]);
 
-  console.log(isAuth);
-
+  console.log("auth from Routes:", isAuth);
   return (
     <Router>
       <Switch>
         <Route path="/login" component={LoginPage} />
-        <Route exact={true} path={"/employees"} component={EmployeesPage} />
+        <PrivateRoute
+          path="/employees"
+          isAuth={true}
+          component={EmployeesPage}
+        />
+        {/* <Route exact={true} path={"/employees"} component={EmployeesPage} /> */}
+        <Route exact={true} path={"/*"} component={NotFound} />
       </Switch>
     </Router>
   );
