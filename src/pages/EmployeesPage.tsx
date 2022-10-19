@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 import NavBar from "../components/NavBar/NavBar";
 import DataTable from "../components/DataTable/DataTable";
 import Pagination from "../components/Pagination/Pagination";
 import Form from "../components/Form/Form";
+import "./style/EmployeesPage.css";
+import Button from "../components/Button/Button";
 
 const url: string =
   "https://6edeayi7ch.execute-api.us-east-1.amazonaws.com/v1/examen/employees/carlosmendez";
@@ -13,6 +16,8 @@ const url: string =
 } */
 
 const EmployeesPage = () => {
+  const history = useHistory();
+
   const [employees, setEmployees] = useState<any[]>([]);
   const [employeesCopy, setEmployeesCopy] = useState<any[]>([]);
 
@@ -35,6 +40,7 @@ const EmployeesPage = () => {
       setEmployees(employeesCopy);
       return;
     } else {
+      console.log(name);
       setCurrentPage(1);
       const result = employeesCopy.filter((e) => {
         return e.last_name.toLowerCase() === name.toLowerCase();
@@ -59,7 +65,7 @@ const EmployeesPage = () => {
   return (
     <div className="employees_container">
       <NavBar searching={searchEmployee} />
-      <div>Employees Page</div>
+      <Button title="Upload Pic" onClick={() => history.push("/upload")} />
       <Form refresh={reload} />
       <DataTable employeesArray={currentEmployee} />
 

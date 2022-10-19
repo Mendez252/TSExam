@@ -12,6 +12,7 @@ import LoginPage from "./pages/LoginPage";
 import EmployeesPage from "./pages/EmployeesPage";
 import PrivateRoute from "./pages/PrivateRoute";
 import NotFound from "./pages/NotFound";
+import UploadPage from "./pages/UploadPage";
 
 interface OwnProps {}
 
@@ -38,6 +39,7 @@ const Routes = ({ accessToken }: Props) => {
           isAuth={true}
           component={EmployeesPage}
         />
+        <Route path="/upload" component={UploadPage} />
         {/* <Route exact={true} path={"/employees"} component={EmployeesPage} /> */}
         <Route exact={true} path={"/*"} component={NotFound} />
       </Switch>

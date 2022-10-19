@@ -2,7 +2,17 @@ import React from "react";
 import Searchbar from "../Searchbar/Searchbar";
 import "./NavBar.css";
 
-const NavBar = ({ user = true, notification_count = 0, searching }) => {
+interface Props {
+  user?: boolean;
+  notification_count?: number;
+  searching: (e: string) => void;
+}
+
+const NavBar: React.FC<Props> = ({
+  user = true,
+  notification_count = 0,
+  searching,
+}) => {
   const checkNotification = () => {
     if (notification_count <= 0) return;
     else return "notification";
@@ -17,10 +27,10 @@ const NavBar = ({ user = true, notification_count = 0, searching }) => {
       <Searchbar onHandleSearch={searching} />
       {user ? (
         <div className="user_container">
-          <div count={notification_count} className={checkNotification()}>
+          <div /* count={notification_count} */ className={checkNotification()}>
             <i className="fa-solid fa-envelope"></i>
           </div>
-          <div count={notification_count} className={checkNotification()}>
+          <div /* count={notification_count} */ className={checkNotification()}>
             <i className="fa-solid fa-bell"></i>
           </div>
           <img

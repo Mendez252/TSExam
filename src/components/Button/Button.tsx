@@ -12,10 +12,6 @@ interface Props {
 const Button: React.FC<Props> = ({ title, flag = "", onClick }) => {
   const [status, setStatus] = useState(flag);
 
-  const onHandleClick = () => {
-    console.log("clicked");
-  };
-
   const checkFlag = () => {
     if (status === "") return "generic";
     if (status === "error") return "generic error";

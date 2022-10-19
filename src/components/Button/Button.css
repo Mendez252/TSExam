@@ -12,6 +12,8 @@
   cursor: pointer;
   font-weight: bold;
   transition: all 0.2s linear 0s;
+  padding: 5px;
+  margin-top: 10px;
 }
 .generic:hover {
   transition: all 0.2s linear 0s;

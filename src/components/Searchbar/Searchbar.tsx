@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { createNoSubstitutionTemplateLiteral } from "typescript";
 import "./Searchbar.css";
 
 interface searchbarProps {
@@ -17,7 +16,6 @@ const Searchbar = ({ onHandleSearch }: searchbarProps) => {
   };
 
   const search = () => {
-    console.log(query);
     onHandleSearch(query);
   };
 
@@ -26,7 +24,7 @@ const Searchbar = ({ onHandleSearch }: searchbarProps) => {
       <i className="fa-solid fa-magnifying-glass icon"></i>
       <input
         className="searchbar_container"
-        placeholder="Search only by name"
+        placeholder="Search by name"
         onChange={(e) => onHandleChange(e)}
         value={query}
       ></input>
