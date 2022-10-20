@@ -23,20 +23,15 @@ interface StateProps {
 type Props = StateProps & OwnProps;
 
 const Routes = ({ accessToken }: Props) => {
-  const [isAuth, setAuth] = useState(false);
-
-  useEffect(() => {
-    setAuth(accessToken.isLogged);
-  }, [accessToken.isLogged]);
-
-  console.log("auth from Routes:", isAuth);
+  console.log("accessToken", accessToken);
+  console.log("auth from Routes:", accessToken.isLogged);
   return (
     <Router>
       <Switch>
         <Route path="/login" component={LoginPage} />
         <PrivateRoute
           path="/employees"
-          isAuth={true}
+          isAuth={accessToken.isLogged}
           component={EmployeesPage}
         />
         <Route path="/upload" component={UploadPage} />

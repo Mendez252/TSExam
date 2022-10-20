@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RootState } from "../redux/store/";
 import { connect } from "react-redux";
 import { login } from "../redux/store/sessions/actions";
@@ -17,8 +17,8 @@ type Styles = {
 };
 
 type User = {
-  email: string;
-  password: string;
+  email: string | undefined;
+  password: string | undefined;
   isLogged: boolean;
 };
 
@@ -37,15 +37,21 @@ type Props = StateProps & DispatchProps & OwnProps;
 //--------------------------------------------------------->
 const LoginPage = ({ accessToken, login }: Props) => {
   const [user, setUser] = useState<User>({
-    email: "",
-    password: "",
+    email: undefined,
+    password: undefined,
     isLogged: false,
   });
   const [turnOn, setTurnOn] = useState<Styles>({ color: "black" });
   const [turnOff, setTurnOff] = useState<Styles>({ color: "gray" });
   const [active, setActive] = useState<boolean>(false);
 
-  const token = accessToken?.accessToken;
+  const onHandleLogin = () => {
+    const { email, password } = user;
+    console.log("onclick");
+    if (email && password === "test") {
+      login("test", "test", true);
+    }
+  };
 
   const onHandleChange = (e: React.FormEvent): void => {
     e.preventDefault();
@@ -73,11 +79,8 @@ const LoginPage = ({ accessToken, login }: Props) => {
     }
   };
 
-  /*   if (accessToken.isLogged) {
-    return <Redirect to="/employees" />;
-  } else {
-    return <Redirect to="/login" />;
-  } */
+  const isLogged = accessToken?.isLogged;
+  if (isLogged) return <Redirect to="/employees" />;
 
   return (
     <div className="main_container">
@@ -136,7 +139,7 @@ const LoginPage = ({ accessToken, login }: Props) => {
         <Button
           flag="sucess"
           title={active ? "Sign Up" : "Sign In"}
-          onClick={() => login("test", "test", true)}
+          onClick={onHandleLogin}
         />
       </div>
     </div>

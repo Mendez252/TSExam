@@ -51,6 +51,7 @@ export const login = (
     password,
     isLogged,
   };
+
   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<void> => {
     return new Promise<void>((resolve) => {
       dispatch(isFetching(true));
@@ -60,7 +61,7 @@ export const login = (
           dispatch(isFetching(false));
           resolve();
         }, 1000);
-      }, 3000);
+      }, 1500);
     });
   };
 };
