@@ -52,7 +52,10 @@ const EmployeesPage = () => {
   };
 
   const reload = (): any => {
-    setEmployees(employees);
+    const request = axios.get(`${url}`).then((res) => {
+      setEmployees(res.data.data.employees);
+      setEmployeesCopy(res.data.data.employees);
+    });
   };
 
   useEffect((): any => {
@@ -66,7 +69,7 @@ const EmployeesPage = () => {
     <div className="employees_container">
       <NavBar searching={searchEmployee} />
       <Button title="Upload Pic" onClick={() => history.push("/upload")} />
-      <Form refresh={reload} />
+      <Form reload={reload} />
       <DataTable employeesArray={currentEmployee} />
 
       <Pagination
