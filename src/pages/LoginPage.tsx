@@ -48,8 +48,10 @@ const LoginPage = ({ accessToken, login }: Props) => {
   const onHandleLogin = () => {
     const { email, password } = user;
     console.log("onclick");
-    if (email && password === "test") {
-      login("test", "test", true);
+    if (email === "test@test" && password === "test") {
+      login("test@test", "test", true);
+    } else {
+      alert("Username or Password not valid");
     }
   };
 

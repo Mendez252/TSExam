@@ -29,9 +29,9 @@ const accessToken = (
   switch (action.type) {
     case "SET_TOKEN":
       const { username, password } = action.accessToken;
-      if (username && password === "test") {
-        return { ...state, isLogged: action.accessToken.isLogged };
-      }
+
+      return { ...state, isLogged: action.accessToken.isLogged };
+
       break;
     case "SET_FETCHING":
       return { ...state, isFetching: action.isFetching };

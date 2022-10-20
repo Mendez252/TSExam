@@ -137,7 +137,7 @@ const LoginForm = ({ accessToken, login }: Props) => {
       <Button
         flag="sucess"
         title={active ? "Sign Up" : "Sign In"}
-        onClick={() => login("test", "test", true)}
+        onClick={() => login("test@test", "test", true)}
       />
     </div>
   );

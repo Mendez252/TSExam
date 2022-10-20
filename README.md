@@ -1,6 +1,26 @@
-# Getting Started with Create React App
+##EXAMEN REACT
+This project was made with create-react-app and Typescript template.
+You can access the application with the following credentials, the form makes a basic validation for credentials:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+user: test@test
+password: test
+
+SignUp ----> is not functional
+
+Once inside the application, you will see a list of users loaded from an API, and a form in wich you'll be able to post a new user to that API. The form has basic validations with javascript and pagination for user's table.
+
+In the upload page you will be able to drag and drop one or multiple images at once and see a preview.
+*Carrousel of images is not functional
+*Saving image to a storage is not functional
+
+Public Routes:
+path='/login'
+
+Protected Routes:
+path='/employees'
+path='/upload'
+
+If you are not signed in you wont be able to see the protected routes.
 
 ## Available Scripts
 
@@ -10,14 +30,6 @@ In the project directory, you can run:
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
@@ -38,9 +50,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
