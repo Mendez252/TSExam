@@ -23,7 +23,6 @@ interface StateProps {
 type Props = StateProps & OwnProps;
 
 const Routes = ({ accessToken }: Props) => {
-  console.log("accessToken", accessToken);
   console.log("auth from Routes:", accessToken.isLogged);
   return (
     <Router>
@@ -34,7 +33,12 @@ const Routes = ({ accessToken }: Props) => {
           isAuth={accessToken.isLogged}
           component={EmployeesPage}
         />
-        <Route path="/upload" component={UploadPage} />
+        <PrivateRoute
+          path="/upload"
+          isAuth={accessToken.isLogged}
+          component={UploadPage}
+        />
+        {/* <Route path="/upload" component={UploadPage} /> */}
         {/* <Route exact={true} path={"/employees"} component={EmployeesPage} /> */}
         <Route exact={true} path={"/*"} component={NotFound} />
       </Switch>
