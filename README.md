@@ -10,17 +10,21 @@ SignUp ----> is not functional
 Once inside the application, you will see a list of users loaded from an API, and a form in wich you'll be able to post a new user to that API. The form has basic validations with javascript and pagination for user's table.
 
 In the upload page you will be able to drag and drop one or multiple images at once and see a preview.
-*Carrousel of images is not functional
-*Saving image to a storage is not functional
 
 Public Routes:
-path='/login'
+path='/'
 
 Protected Routes:
 path='/employees'
 path='/upload'
 
 If you are not signed in you wont be able to see the protected routes.
+If you navigate to a different directory you should see a 404 error page
+
+NOT FUNCTIONAL FEATURES:
+Hashrouting
+Carrousel of images is not functional
+Saving image to a storage is not functional
 
 ## Available Scripts
 
@@ -50,3 +54,13 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+### `build version in a static server`
+
+Let us run the app in production mode. Run the following command to serve the build version in a static server.
+
+1| npm install -g serve
+2| serve -s build
+
+The app is now running in production mode!
+Go to http://localhost:3000/ (or the address mentioned)
