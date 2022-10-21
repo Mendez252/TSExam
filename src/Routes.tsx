@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { RootState } from "./redux/store";
 import { connect } from "react-redux";
 import {
@@ -6,6 +5,7 @@ import {
   Route,
   Switch,
   RouteProps,
+  HashRouter,
 } from "react-router-dom";
 import { AccessToken } from "./redux/store/sessions/reducer";
 import LoginPage from "./pages/LoginPage";
@@ -23,9 +23,8 @@ interface StateProps {
 type Props = StateProps & OwnProps;
 
 const Routes = ({ accessToken }: Props) => {
-  console.log("auth from Routes:", accessToken.isLogged);
   return (
-    <Router>
+    <HashRouter>
       <Switch>
         <Route path="/login" component={LoginPage} />
         <PrivateRoute
@@ -38,11 +37,9 @@ const Routes = ({ accessToken }: Props) => {
           isAuth={accessToken.isLogged}
           component={UploadPage}
         />
-        {/* <Route path="/upload" component={UploadPage} /> */}
-        {/* <Route exact={true} path={"/employees"} component={EmployeesPage} /> */}
         <Route exact={true} path={"/*"} component={NotFound} />
       </Switch>
-    </Router>
+    </HashRouter>
   );
 };
 
