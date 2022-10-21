@@ -22,9 +22,8 @@ If you are not signed in you wont be able to see the protected routes.
 If you navigate to a different directory you should see a 404 error page
 
 NOT FUNCTIONAL FEATURES:
-Hashrouting
-Carrousel of images is not functional
-Saving image to a storage is not functional
+Hashrouting,
+Carrousel of images is not functional,
 
 ## Available Scripts
 
