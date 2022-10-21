@@ -1,6 +1,5 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-// Import the dropzone component
 import Dropzone from "../components/DropZone/DropZone";
 import "./style/UploadPage.css";
 import NavBar from "../components/NavBar/NavBar";
@@ -11,6 +10,20 @@ import ImageList from "../components/ImageList/ImageList";
 function UploadPage() {
   const [images, setImages] = useState([]);
   const history = useHistory();
+
+  const toDataURL = (url) =>
+    fetch(url)
+      .then((response) => response.blob())
+      .then(
+        (blob) =>
+          new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+          })
+      );
+
   // onDrop function
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.map((file) => {
@@ -19,6 +32,10 @@ function UploadPage() {
       // onload callback gets called after the reader reads the file data
       reader.onload = function (e) {
         // add the image into the state. Since FileReader reading process is asynchronous, its better to get the latest snapshot state (i.e., prevState) and update it.
+        toDataURL(e.target.result, function (dataUrl) {
+          console.log("RESULT:");
+        });
+
         setImages((prevState) => [
           ...prevState,
           { id: cuid(), src: e.target.result },
@@ -30,9 +47,24 @@ function UploadPage() {
     });
     console.log(acceptedFiles);
   }, []);
+
   const onSearch = () => {};
 
-  // We pass onDrop function and accept prop to the component. It will be used as initial params for useDropzone hook
+  toDataURL(images);
+  images.map((e) => console.log(e));
+
+  useEffect(() => {
+    <button
+      onClick={() => {
+        const save = localStorage.getItem("image");
+        const initialValue = JSON.parse(save);
+        console.log(initialValue);
+      }}
+    >
+      Click Me
+    </button>;
+  }, [images]);
+
   return (
     <main className="App_container">
       <NavBar searching={onSearch} />
