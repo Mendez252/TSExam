@@ -24,7 +24,7 @@ type Props = StateProps & OwnProps;
 
 const Routes = ({ accessToken }: Props) => {
   return (
-    <HashRouter>
+    <Router>
       <Switch>
         <Route path="/login" component={LoginPage} />
         <PrivateRoute
@@ -39,7 +39,7 @@ const Routes = ({ accessToken }: Props) => {
         />
         <Route exact={true} path={"/*"} component={NotFound} />
       </Switch>
-    </HashRouter>
+    </Router>
   );
 };
 
